@@ -12,6 +12,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # Langkah ini bakal download file kernel langsung di server GitHub!
+      - name: Fetch Kernel Image
+        run: |
+          wget -O Image https://github.com/imamjoestar87-glitch/AnyKernel3/releases/download/v1.0/Image || true
+
       - name: Create Flashable Zip
         run: |
           zip -r9 AnyKernel3-sapphiren.zip * -x .git\* .github\* README.md
@@ -21,4 +26,3 @@ jobs:
         with:
           name: AnyKernel3-sapphiren
           path: AnyKernel3-sapphiren.zip
-          
