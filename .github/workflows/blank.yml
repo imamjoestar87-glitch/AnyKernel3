@@ -1,0 +1,24 @@
+name: Build AnyKernel3 Zip
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-zip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create Flashable Zip
+        run: |
+          zip -r9 AnyKernel3-sapphiren.zip * -x .git\* .github\* README.md
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AnyKernel3-sapphiren
+          path: AnyKernel3-sapphiren.zip
+          
